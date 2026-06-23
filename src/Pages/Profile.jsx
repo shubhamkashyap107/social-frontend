@@ -152,81 +152,94 @@ const Profile = () => {
 
               {/* Posts */}
               <div className="mt-10">
-                <h2 className="text-2xl font-semibold text-white mb-6">
+                <h2 className="text-2xl font-semibold text-white mb-6 flex items-center gap-2">
+                  <i className="fa-regular fa-images text-indigo-400"></i>
                   Posts
                 </h2>
 
-                {posts.length === 0 ? (
+                {!posts || posts.length === 0 ? (
                   <div className="bg-white/5 border border-white/10 rounded-2xl p-12 text-center">
+                    <i className="fa-regular fa-image text-gray-500 text-4xl mb-3 block"></i>
                     <h1 className="text-gray-400 text-xl">
                       No posts yet...
                     </h1>
+                    <p className="text-gray-500 text-sm mt-2">
+                      Share your first moment with the world.
+                    </p>
                   </div>
                 ) : (
-                  <div className="grid gap-4">
-                    {posts.map((item, idx) => {
-                      return (
-                        <div
-                          key={idx}
-                          className="bg-white/5 border border-white/10 rounded-2xl p-5 text-white"
-                        >
-                          Item
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {posts.map((post) => (
+                      <div
+                        key={post._id}
+                        className="
+                          group relative
+                          bg-white/5 border border-white/10
+                          rounded-2xl overflow-hidden
+                          hover:border-indigo-500/50
+                          hover:-translate-y-1
+                          transition-all duration-300
+                          shadow-lg hover:shadow-indigo-500/20
+                        "
+                      >
+                        <div className="relative overflow-hidden h-60">
+                          <img
+                            src={post.imageUrl}
+                            alt="post"
+                            className="
+                              w-full h-full object-cover
+                              group-hover:scale-110
+                              transition-transform duration-500
+                            "
+                          />
+
+                          {/* Hover overlay with stats */}
+                          <div
+                            className="
+                              absolute inset-0
+                              bg-black/0 group-hover:bg-black/40
+                              flex items-center justify-center gap-6
+                              opacity-0 group-hover:opacity-100
+                              transition-all duration-300
+                            "
+                          >
+                            <span className="flex items-center gap-2 text-white font-semibold">
+                              <i className="fa-solid fa-heart text-rose-500"></i>
+                              {post.likes?.length || 0}
+                            </span>
+
+                            <span className="flex items-center gap-2 text-white font-semibold">
+                              <i className="fa-solid fa-comment text-indigo-400"></i>
+                              {post.comments?.length || 0}
+                            </span>
+                          </div>
                         </div>
-                      );
-                    })}
+
+                        <div className="p-4">
+                          <p className="text-gray-200 text-sm break-words line-clamp-2">
+                            {post.caption || "No caption"}
+                          </p>
+
+                          <div className="flex justify-between items-center mt-3 pt-3 border-t border-white/10 text-gray-400 text-xs">
+                            <span className="flex items-center gap-1.5">
+                              <i className="fa-solid fa-heart text-rose-500/80"></i>
+                              {post.likes?.length || 0} likes
+                            </span>
+
+                            <span className="flex items-center gap-1.5">
+                              <i className="fa-solid fa-comment text-indigo-400/80"></i>
+                              {post.comments?.length || 0} comments
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
 
             </div>
           </div>
-
-          {/* Posts */}
-            <div className="mt-10">
-              <h2 className="text-2xl font-semibold text-white mb-6">
-                Posts
-              </h2>
-
-              {!posts || posts.length === 0 ? (
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-12 text-center">
-                  <h1 className="text-gray-400 text-xl">
-                    No posts yet...
-                  </h1>
-                </div>
-              ) : (
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {posts.map((post) => (
-                    <div
-                      key={post._id}
-                      className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden"
-                    >
-                      <img
-                        src={post.imageUrl}
-                        alt="post"
-                        className="w-full h-60 object-cover"
-                      />
-
-                      <div className="p-4">
-                        <p className="text-white break-words">
-                          {post.caption}
-                        </p>
-
-                        <div className="flex justify-between mt-4 text-gray-400 text-sm">
-                          <span>
-                            ❤️ {post.likes?.length || 0}
-                          </span>
-
-                          <span>
-                            💬 {post.comments?.length || 0}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
         </div>
       </div>
     </div>
