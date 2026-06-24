@@ -27,6 +27,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/complete-profile" element={<CompleteProfile />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:id" element={<Profile />} />
           <Route path="/profile/edit" element={<EditProfile />} />
           <Route path="/post/new" element={<NewPost />} />
         </Route>  
