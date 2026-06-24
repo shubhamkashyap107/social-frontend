@@ -54,34 +54,43 @@ const Navbar = () => {
           />
 
           {user.length > 0 && (
-            <div className="absolute top-14 left-0 w-full bg-slate-900 border border-white/10 rounded-xl shadow-lg overflow-hidden z-50">
-              {user.map((item) => {
-                return (
-                  <div
-                    key={item._id}
-                    onClick={() => {
-                      setQuery("")
-                      setUser([])
-                      
-                    }}
-                    className="flex items-center gap-3 p-3 hover:bg-white/10 cursor-pointer"
-                  >
-                    <img
-                      src={
-                        item.displayPicture ||
-                        "https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
-                      }
-                      alt=""
-                      className="w-10 h-10 rounded-full object-cover"
-                    />
-                    <span className="text-white">
-                      {item.username}
-                    </span>
-                  </div>
-                )
-              })}
-            </div>
-          )}
+
+          <div className="absolute top-14 left-0 w-full bg-slate-900 border border-white/10 rounded-xl shadow-lg overflow-y-auto z-50 max-h-[330px]"
+          style={{ scrollbarWidth: "none" }}
+          >
+           {user.map((item) => {
+            return (
+           <div
+            key={item._id}
+            onClick={() => {
+            setQuery("")
+            setUser([])
+            
+              }}
+            className="flex items-center gap-3 p-3 hover:bg-white/10 cursor-pointer"
+           >
+            <img
+            src={
+              item.displayPicture ||
+              "https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
+            }
+            alt=""
+            className="w-10 h-10 rounded-full object-cover shrink-0"
+          />
+
+          <div className="flex flex-col min-w-0">
+            <span className="text-white text-sm font-medium truncate">
+              {item.firstName} {item.lastName}
+            </span>
+            <span className="text-gray-400 text-xs truncate">
+              @{item.username}
+            </span>
+          </div>
+        </div>
+      )
+    })}
+  </div>
+)}
         </div>
 
         <div className="flex items-center gap-3">
