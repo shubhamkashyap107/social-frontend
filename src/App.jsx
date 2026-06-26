@@ -9,6 +9,7 @@ import CompleteProfile from "./Pages/CompleteProfile"
 import Profile from "./Pages/Profile"
 import EditProfile from "./Pages/EditProfile"
 import NewPost from "./Pages/NewPost"
+import UserProfile from "./Pages/UserProfile"
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/complete-profile" element={<CompleteProfile />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:id" element = {<UserProfile />} />
           <Route path="/profile/edit" element={<EditProfile />} />
           <Route path="/post/new" element={<NewPost />} />
         </Route>  
