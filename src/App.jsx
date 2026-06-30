@@ -10,6 +10,7 @@ import Profile from "./Pages/Profile"
 import EditProfile from "./Pages/EditProfile"
 import NewPost from "./Pages/NewPost"
 import UserProfile from "./Pages/UserProfile"
+import Chats from "./Pages/Chats"
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/profile/:id" element = {<UserProfile />} />
           <Route path="/profile/edit" element={<EditProfile />} />
           <Route path="/post/new" element={<NewPost />} />
+          <Route path="/chats" element = {<Chats />}/>
         </Route>  
 
         

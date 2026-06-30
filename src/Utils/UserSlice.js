@@ -8,13 +8,13 @@ const userSlice = createSlice({
             return action.payload
         },
         updateFollowing: (state, action) => {
-            const { targetId, isFollowing } = action.payload
+            const { targetUser, isFollowing } = action.payload
              if (!state) return state
 
               if (isFollowing) {
-                 state.following = state.following.filter((f) => f !== targetId)
+                state.following = state.following.filter((f) => f._id !== targetUser._id)
              } else {
-                state.following = [...state.following, targetId]
+                state.following = [...state.following, targetUser]
              }
         },
         updatePost : (state, action) => {

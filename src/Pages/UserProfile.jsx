@@ -43,7 +43,7 @@ const UserProfile = () => {
     
   }, [id])
 
-  const handleFollowToggle = async () => {
+ const handleFollowToggle = async () => {
     setFollowLoading(true)
     try {
         await axios.patch(import.meta.env.VITE_BACKEND_URL + `/profile/follow/${id}`,{},{ withCredentials: true })
@@ -56,14 +56,23 @@ const UserProfile = () => {
             : [...prev.followers, currentUser._id],
         }))
 
-         dispatch(updateFollowing({ targetId: id, isFollowing }))
+        dispatch(updateFollowing({ 
+          targetUser: { 
+            _id: user._id, 
+            username: user.username, 
+            displayPicture: user.displayPicture,
+            firstName: user.firstName,
+            lastName: user.lastName
+          }, 
+          isFollowing 
+        }))
 
     } catch (err) {
       console.error("Follow toggle failed", err)
     } finally {
       setFollowLoading(false)
     }
-  }
+}
 
   const handleUpdatePost = (postId, updatedFields) => {
   setUser((prev) => ({
